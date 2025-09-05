@@ -1,0 +1,159 @@
+/* navbar */
+
+
+
+
+
+
+/* card style */
+ .listing-card{
+    border: none !important;
+ }
+ .card_image{
+    opacity: 1;
+    
+    border-radius: 1rem !important;
+ }
+
+ .card_image:hover{
+    opacity: 0.7;
+ }
+
+ /* show page style */
+ .show_card{
+    width: 600px !important;
+ }
+ .show_image{
+    width: 600px !important;
+    height: 350px !important;
+ }
+
+
+ .price{
+   border: 2px solid transparent;
+    width: 250px;
+   padding: 1rem 3rem 1rem 3rem;
+   background-color: #d6d2d2;
+   border-radius: 1rem;
+ }
+ .discount{
+    margin-top: 10px;
+    text-decoration:line-through;
+ }
+
+
+ /* Edit page */
+
+#card-image{
+    width: 300px;
+    height: 300px;
+}
+
+
+
+
+
+#map {
+    height: 400px;
+    width: 400px;
+}
+
+/* pannel style */
+#filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  
+}
+
+.filter {
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+    font-size: 1.5rem;
+}
+
+.filter:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.filter p {
+    font-size: 0.8rem;
+}
+
+.tax-info {
+    display: none;
+}
+
+.tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.5rem;
+    padding: 1rem;
+    margin-left: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+
+/* search button in navbar styling */
+
+.search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+}
+
+.search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+}
+
+.search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+}
+
+.search-input {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+}
+
+
+/* footer style */
+
+#footer_style{
+    height: 3rem;
+    width: 100%;
+    background-color:#ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+   
+}
+#icon_style i{
+    margin: 1rem;
+    font-size: 2rem;
+}
+#icon_style i:hover{
+   border: 1px solid black;
+}
+
+.tag_style{
+    font-size: 1.2rem;
+}
+.f-info-links a{
+    margin: 1rem;
+    text-decoration: none;
+}
+.f-info-links a:hover{
+   text-decoration: underline;
+}
+
+
+
+

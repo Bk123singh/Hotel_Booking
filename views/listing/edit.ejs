@@ -1,0 +1,54 @@
+<%- layout("/layout/boilerplate") %>
+
+    <h3 class="text-center mt-3">Edit your listings</h3>
+    <form method="POST" action="/listings/<%= data._id %>?_method=PUT" enctype="multipart/form-data">
+        <div class="container-md col-6">
+
+            <div class="mb-3">
+                <label for="title" class="form-label ">Title</label>
+                <input type="text" name="listing[title]" id="" value="<%= data.title %>" class="form-control mb-3"
+                    required>
+                <div class="valid-feedback">Please enter valid Title</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" id="" class="form-control mb-3"
+                    required ><%= data.description %></textarea>
+            </div>
+
+            <div class="mb-3" >
+                Original listing Image
+                <img class="card-img" id="card_image" src="<%=changeImage %>">
+            </div>    
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New Image</label>
+                <input type="file" name="listing[image]"  class="form-control mb-3">
+            </div>
+           <div class="row">
+             <div class="mb-3 col-md-4" >
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="listing[price]" id="" value="<%= data.price %>" class="form-control mb-3"
+                    required>
+            </div>
+
+            <div class="mb-3 col-md-4" >
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="listing[location]" id="" value="<%= data.location %>" class="form-control mb-3"
+                    required>
+            </div>
+           </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" name="listing[country]" id="" value="<%= data.country %>" class="form-control"
+                    required>
+            </div>
+            <br>
+
+
+
+            <button class="btn btn-danger">Update</button>
+            <br><br>
+        </div>
+    </form>
