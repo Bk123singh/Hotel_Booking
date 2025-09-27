@@ -10,6 +10,7 @@ const controller = require("../controller/listing.js");
 const multer = require("multer");
 const { storage} = require("../cloudConfig.js");
 const upload = multer({storage });
+const likeListing = require("../controller/listing.js");
 
 
 // validatelisting
@@ -32,6 +33,8 @@ router
   .route("/:id")
   .get(wrapAsync(controller.showListing))
   .put(isLogin, isOwner,upload.single("listing[image]"), validateListing, wrapAsync(controller.UpdateListing));
+
+router.post("/:id/like" , isLogin,controller.likeListing); 
 
 router
   .route("/:id")

@@ -23,10 +23,16 @@ const port = 8080;
 
 // MongoDB connection
 const dbUrl = process.env.ATLASDB_URL;
-mongoose
-  .connect(dbUrl)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log("MongoDB connection error:", err));
+// mongoose
+//   .connect(dbUrl)
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err) => console.log("MongoDB connection error:", err));
+
+
+
+  mongoose.connect(dbUrl)
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 // View engine setup
 app.engine("ejs", ejsMate);
@@ -69,7 +75,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user;
+  res.locals.currUser = req.user || null;
   next();
 });
 

@@ -17,17 +17,27 @@
                         </p>
                         <p class="card-text"> &#x20b9; <%= data.price%>
                         </p>
-                        <p class="card-text">
-                            <%= data.location %>
-                        </p>
-                        <p class="card-text">
-                            <%= data.country %>
-                        </p>
+                        <% if (data.keyFeatures && data.keyFeatures.length> 0) { %>
+                            <h5>Key Features</h5>
+                            <ul class="list-group list-group-flush">
+                                <% data.keyFeatures.forEach(feature=> { %>
+                                    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success"></i>
+                                        <%= feature %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } %>
+                                <p class="card-text">
+                                    <%= data.location %>
+                                </p>
+                                <p class="card-text">
+                                    <%= data.country %>
+                                </p>
                     </div>
                 </div>
             </div>
 
-           
+
 
 
             <% if(currUser && currUser._id.equals(data.owner._id)){ %>
@@ -88,14 +98,14 @@
                             <% } %>
                                 <hr>
 
-                                <% if(data.reviews.length>0) {%>
+                                <% if(data.reviews.length> 0) { %>
                                     <div class="row">
                                         <p><b>All Reviews</b></p>
                                         <% for(review of data.reviews){ %>
                                             <div class="card col-5 ms-3 mb-3">
-                                                <div class="card-body">
+                                                <div class="card-body style="overflow-x:auto;"">
                                                     <h5 class="card-title">
-                                                        <%=review.author.username %>
+                                                        <%= review.author.username %>
                                                     </h5>
                                                     <p class="starability-result" data-rating="<%= review.rating %>">
                                                     </p>
@@ -103,17 +113,18 @@
                                                         <%= review.comment %>
                                                     </p>
 
+                                                    <% if(currUser && currUser._id.equals(review.author._id)) { %>
+                                                        <form class="mb-3" method="post"
+                                                            action="/listings/<%= data._id %>/reviews/<%= review._id %>/?_method=DELETE">
+                                                            <button class="btn btn-sm btn-dark">Delete</button>
+                                                        </form>
+                                                        <% } %>
                                                 </div>
-                                                <form class="mb-3" method="post"
-                                                    action="/listings/<%= data._id%>/reviews/<%= review._id %>/?_method=DELETE">
-                                                    <button class="btn btn-sm btn-dark">Delete</button>
-                                                </form>
                                             </div>
                                             <% } %>
                                     </div>
-
-
                                     <% } %>
+
                     </div>
                     <div class="col-6 offset-3 mb-3">
                         <h3>Where you'll be</h3>
@@ -123,5 +134,24 @@
                     </div>
         </div>
 
-        
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const lat = <%= data.latitude || 26.9124 %>   
+                const lng = <%= data.longitude || 75.7873 %>
+
+                const map = L.map("map").setView([lat, lng], 13);
+
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    maxZoom: 19,
+                    attribution: "© OpenStreetMap contributors",
+                }).addTo(map);
+
+                L.marker([lat, lng]).addTo(map)
+                    .bindPopup("<b><%= data.title %></b><br><%= data.location %>")
+                    .openPopup();
+            });
+        </script>
+
+
     </body>

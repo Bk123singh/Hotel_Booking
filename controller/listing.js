@@ -12,6 +12,7 @@ module.exports.getNewForm = (req, res) => {
   res.render("listing/new.ejs");
 };
 
+
 module.exports.CreateNewListing = async (req, res) => {
   let url = req.file.path;
   let filename = req.file.filename;
@@ -69,3 +70,32 @@ module.exports.deleteListing = async (req, res) => {
   req.flash("success", "Listings Deleted !");
   res.redirect("/listings");
 };
+
+
+module.exports.likeListing = async (req, res) => {
+  const { id } = req.params;
+ const data = await listing.findById(id).populate("likes");
+
+
+  if (!data) {
+    req.flash("error", "Listing not found.");
+    return res.redirect("/listings");
+  }
+
+  const userId = req.user._id;
+  const isLiked = data.likes.some(user => user.equals(userId));
+
+  if (isLiked) {
+    data.likes.pull(userId);
+  } else {
+    data.likes.push(userId);
+  }
+
+  await data.save();
+
+  res.redirect("/listings");  
+};
+
+
+
+

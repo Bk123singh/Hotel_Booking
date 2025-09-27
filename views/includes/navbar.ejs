@@ -1,63 +1,152 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding:0 1rem 0 1rem ;
-  }
-  .search-btn:hover{
-    background-color: #fe424d;
-    color: #fff;
-  }
-  .search-btn i{
-    display: inline;
-    margin-right: 0.5rem;
-  }
-  .search-input{
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
-  }
-  .fa-compass{
-    color: #fe424d;
-    font-size: 1.5rem;
+ .search-input {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;  
+  font-size: 1rem;
+}
 
+.search-btn {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.search-btn i {
+  margin-right: 0.5rem;
+}
+
+ .search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
   }
-  
+
+
+  /* login and signup page */
+
+  /*  Navbar Auth Buttons */
+  .nav-auth .nav-link {
+    border-radius: 25px;
+    padding: 0.4rem 1rem;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+  }
+
+  /* Sign Up button (highlighted) */
+ /*  Navbar Auth Section */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* spacing between buttons */
+}
+
+/* Base button style */
+.nav-auth .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem; /* space between icon & text */
+  border-radius: 25px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+/* Sign Up button (primary) */
+.nav-auth .signup-btn {
+  background-color: #fe424d;
+  color: #fff !important;
+}
+
+.nav-auth .signup-btn:hover {
+  background-color: #e63946;
+  color: #fff !important;
+}
+
+/* Log In button (outline) */
+.nav-auth .login-btn {
+  border: 2px solid #fe424d;
+  color: #fe424d !important;
+  background: transparent;
+}
+
+.nav-auth .login-btn:hover {
+  background-color: #fe424d;
+  color: #fff !important;
+}
+
+/* Log Out button */
+.nav-auth .logout-btn {
+  border: 2px solid #6c757d;
+  color: #6c757d !important;
+  background: transparent;
+}
+
+.nav-auth .logout-btn:hover {
+  background-color: #6c757d;
+  color: #fff !important;
+}
 
 </style>
 
 
 <body>
-  
+  <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand" href="/listings">
+        <i class="fa-solid fa-compass"></i>
+      </a>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top ">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass" ></i></a>
+      <!--  Toggler button  -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+      <!-- Navbar content -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        
+        <!--  (Explore) -->
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
+        </div>
 
+        <!--  (Search) -->
+        <div class="navbar-nav ms-auto me-auto mt-2 mt-md-0">
+          <form class="d-flex">
+            <input class="form-control me-2 search-input" type="search" placeholder="Search destinations">
+            <button class="btn search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+          </form>
+        </div>
 
-      </div>
-      <div class="navbar-nav ms-auto">
-         <form class="d-flex">
-        <input class="form-control me-2 search-input" type="search" placeholder="Search destinations">
-        <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-      </form>
-      </div>
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home </a>
-        <% if(!currUser){ %>
-          <a href="/signup" class="nav-link"><b>SignUp</b></a>
-          <a class="nav-link" href="/login"><b>Log In</b> </a>
+        <!--  (Auth buttons) -->
+        <div class="navbar-nav ms-auto nav-auth mt-2 mt-md-0">
+          <a class="nav-link" href="/listings/new">
+            <i class="fa-solid fa-house-chimney"></i> Airbnb your home
+          </a>
+
+          <% if(!currUser){ %>
+            <a href="/signup" class="nav-link signup-btn">
+              <i class="fa-solid fa-user-plus"></i> Sign Up
+            </a>
+            <a href="/login" class="nav-link login-btn">
+              <i class="fa-solid fa-right-to-bracket"></i> Log In
+            </a>
           <% } %>
-            <% if(currUser){ %>
-              <a class="nav-link" href="/logout"> <b>Log Out</b></a>
-              <% } %>
+
+          <% if(currUser){ %>
+            <a class="nav-link logout-btn" href="/logout">
+              <i class="fa-solid fa-right-from-bracket"></i> Log Out
+            </a>
+          <% } %>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </body>

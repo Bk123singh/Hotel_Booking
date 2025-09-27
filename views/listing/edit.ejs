@@ -14,30 +14,45 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea name="listing[description]" id="" class="form-control mb-3"
-                    required ><%= data.description %></textarea>
+                    required><%= data.description %></textarea>
             </div>
 
-            <div class="mb-3" >
+            <div class="mb-3">
                 Original listing Image
                 <img class="card-img" id="card_image" src="<%=changeImage %>">
-            </div>    
+            </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Upload New Image</label>
-                <input type="file" name="listing[image]"  class="form-control mb-3">
+                <input type="file" name="listing[image]" class="form-control mb-3">
             </div>
-           <div class="row">
-             <div class="mb-3 col-md-4" >
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="listing[price]" id="" value="<%= data.price %>" class="form-control mb-3"
-                    required>
+            <div class="mb-3">
+                <label for="keyFeatures" class="form-label">Key Features</label>
+                <div id="features-container">
+                    <% if (data.keyFeatures && data.keyFeatures.length> 0) { %>
+                        <% data.keyFeatures.forEach(function(feature) { %>
+                            <input type="text" name="listing[keyFeatures][]" class="form-control mb-2"
+                                value="<%= feature %>">
+                            <% }) %>
+                                <% } else { %>
+                                    <input type="text" name="listing[keyFeatures][]" class="form-control mb-2"
+                                        placeholder="Enter a feature">
+                                    <% } %>
+                </div>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="addFeature()">+ Add Feature</button>
             </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="listing[price]" id="" value="<%= data.price %>" class="form-control mb-3"
+                        required>
+                </div>
 
-            <div class="mb-3 col-md-4" >
-                <label for="location" class="form-label">Location</label>
-                <input type="text" name="listing[location]" id="" value="<%= data.location %>" class="form-control mb-3"
-                    required>
+                <div class="mb-3 col-md-4">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" id="" value="<%= data.location %>"
+                        class="form-control mb-3" required>
+                </div>
             </div>
-           </div>
 
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
@@ -52,3 +67,16 @@
             <br><br>
         </div>
     </form>
+
+    <script>
+         function addFeature() {
+        const container = document.getElementById("features-container");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = "listing[keyFeatures][]";
+        input.className = "form-control mb-2";
+        input.placeholder = "Enter a feature";
+        container.appendChild(input);
+    }
+
+    </script>

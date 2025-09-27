@@ -16,14 +16,23 @@ const listingSchema=new Schema({
        filename:String,
     },
     price:Number,
+    keyFeatures: [String],   
     location:String,
     country:String,
+    latitude: Number,
+    longitude: Number,
     reviews:[
         {
             type:Schema.Types.ObjectId,
             ref:"Review"
         }
     ],
+    likes: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }
+],
     owner:{
         type:Schema.Types.ObjectId,
         ref:'User'

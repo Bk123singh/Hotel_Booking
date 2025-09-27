@@ -27,24 +27,35 @@
                 <label for="image" class="form-label">Upload Image</label>
                 <input type="file" name="listing[image]" class="form-control mb-3" required>
             </div>
+            <div class="mb-3">
+                <label for="keyFeatures" class="form-label">Key Features</label>
+                <input type="text" name="listing[keyFeatures][]" class="form-control mb-2"
+                    placeholder="Feature 1 (e.g. Free WiFi)">
+                <input type="text" name="listing[keyFeatures][]" class="form-control mb-2"
+                    placeholder="Feature 2 (e.g. Parking)">
+                <input type="text" name="listing[keyFeatures][]" class="form-control mb-2"
+                    placeholder="Feature 3 (e.g. Air Conditioning)">
+                <small class="form-text text-muted">Add as many features as you like</small>
+            </div>
 
             <div class="row">
-            <div class="mb-3 col-md-6">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="listing[price]" id="" placeholder="1200" class="form-control mb-3" required>
-                <div class="invalid-feedback">
-                    Please should be enter valid price
+                <div class="mb-3 col-md-6">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="listing[price]" id="" placeholder="1200" class="form-control mb-3"
+                        required>
+                    <div class="invalid-feedback">
+                        Please should be enter valid price
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-3 col-md-6">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" name="listing[location]" id="" placeholder="Jaipur,Rajasthan"
-                    class="form-control mb-3" required>
-                <div class="invalid-feedback">
-                    Please shoud be enter a valid location.
+                <div class="mb-3 col-md-6">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" id="" placeholder="Jaipur,Rajasthan"
+                        class="form-control mb-3" required>
+                    <div class="invalid-feedback">
+                        Please shoud be enter a valid location.
+                    </div>
                 </div>
-            </div>
             </div>
 
 
