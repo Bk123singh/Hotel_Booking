@@ -22,17 +22,17 @@ const UserRouter = require("./routes/user.js");
 const port = 8080;
 
 // MongoDB connection
-const dbUrl = process.env.ATLASDB_URL;
-// mongoose
-//   .connect(dbUrl)
-//   .then(() => console.log("MongoDB connected"))
-//   .catch((err) => console.log("MongoDB connection error:", err));
+const dbUrl =process.env.ATLASDB_URL;
 
 
+ mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected!"))
+.catch(err => console.error("MongoDB connection error:", err.message));
 
-  mongoose.connect(dbUrl)
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.error("MongoDB connection error:", err));
+
 
 // View engine setup
 app.engine("ejs", ejsMate);
