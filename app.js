@@ -22,9 +22,9 @@ const UserRouter = require("./routes/user.js");
 const port = 8080;
 
 // MongoDB connection
-const dbUrl =process.env.ATLASDB_URL;
+const dbUrl =process.env.ATLASDB_URL
 
-
+// process.env.ATLASDB_URL
  mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -80,7 +80,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/listings", listings);
-
 app.use("/listings/:id/reviews", reviews);
 app.use("/", UserRouter);
 
